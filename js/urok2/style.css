@@ -1,0 +1,29 @@
+*{
+    padding: 0;
+    margin:0;
+}
+
+.container{
+    display: flex;
+    justify-content: center;
+    top:-50%;
+    width: 50px;
+    height: 50px;
+    background-color: gray;
+}
+
+#box1{
+    background-color: greenyellow;
+}
+#box2{
+    background-color: red;
+}
+
+#button{
+    margin:40px;
+    display: inline-block;
+    padding: 10px,30px;
+    border: 1px solid#555;
+    border-radius: 5px;
+    cursor: pointer;
+}

@@ -1,0 +1,155 @@
+/* правила написания кода
+какой элемент менять {
+перечисляем свойства которые надо изменить
+свойство: значение;
+свойство2: значение2;
+}
+
+*/
+* {
+    margin: 0;
+    padding: 0;
+}
+header nav {
+    /* display: none
+    делает элемент невидимым */
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    
+    position: fixed;
+    top: 55px;
+    background: white;
+    width: 100%;
+    
+}
+.burger {
+    padding: 15px;
+}
+.burger span {
+    /* делаем элемент блочным
+    зачем? потому что иначе нельзя
+    поменять ширину и высоту
+    так как span - это тег для текста */
+    display: block;
+    /* меняем ширину */
+    width: 30px;
+    /* меняем высоту */
+    height: 3px;
+    /* делаем фон черным */
+    background: black;
+    /* добавляем отступ сверху над 
+    каждой "линией" чтобы получился
+    бургер */
+    margin-top: 5px;
+}
+
+header {
+    display: flex;
+    /* центрует элементы по вертикали,
+    если они были в строку */
+    align-items: center;
+    /* по горизонтали */
+    justify-content: space-between;
+    
+}
+
+header ul {
+    list-style: none;
+    /* стили списка: отключить; */
+}
+
+a {
+    /* украшение текста: отключить; */
+    text-decoration: none;
+}
+header a {
+    color: black;
+    padding: 15px;
+    display: block;
+}
+/* max-width: 768px если 
+верстаете начиная с ПК
+потом переходите на планшет */
+/* min-width - означает что экран больше чем 768пикселей
+а это планшет, ноутбук и ПК */
+@media (min-width: 992px) {
+   header nav {
+    /* display: none
+    делает элемент невидимым */
+    opacity: 1;
+    visibility: visible;
+
+    display: flex;
+    position: relative;
+    top: 0;
+    background: white;
+    width: auto;
+    }
+    header {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+    }
+    .burger {
+        display: none;
+    }
+    header ul {
+        display: flex;
+        gap: 20px;
+        /* отступ между элементами, только если писали flex */
+    }
+}
+/* n-th
+n-нный по счету элемент
+*/
+.active span:nth-child(1) {
+    /* свойство для многих внешних изменений */
+    /* degree - градусы */
+    /* rotate - повернуть */
+    transform: rotate(45deg) translate(6px, 6px);
+}
+.active span:nth-child(2) {
+    display: none;
+}
+.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(0px, 0px);
+}
+.burger span {
+    /* transition - переход, анимация
+    1 - что анимируем, в моем случае всё (all)
+    2 - длительность анимации 0.3 секунды
+    3 - ease плавность анимации
+    ease - плавный старт, по середине ускоряется, плавный конец
+    */
+    transition: all 0.3s ease;
+}
+/* translate - переместить
+первое число в скобках координата x
+второе y
+если y отрицательный то элемент пойдет наверх */
+
+/* вложенный пункт меню */
+.menu-item {
+    position: relative;
+}
+.sub-menu {
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+}
+.sub-link img {
+    width: 12px;
+}
+
+@media(max-width:992px){
+    .sub-menu{
+        position: relative;
+        display: none;
+    }
+}
