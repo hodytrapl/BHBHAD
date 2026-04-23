@@ -1,0 +1,9 @@
+{
+    "binds":{
+        "playerControllerUp":"KeyW",
+        "playerControllerDown":"KeyS",
+        "playerControllerLeft":"KeyA",
+        "playerControllerRight":"KeyD",
+        "playerControllerJump":"Space"
+    }
+}
