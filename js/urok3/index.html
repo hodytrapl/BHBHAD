@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0;
+            margin:0;
+        }
+
+        #switch-theme{
+            width: 50px;
+            height: 25px;
+        }
+
+        .light{
+            color:black;
+            background-color: white;
+        }
+
+        .black{
+            color:white;
+            background-color: black;
+        }
+    </style>
+</head>
+<body>
+
+    <script>
+        function Student(id,name,fam,pair,voidpair){
+            this.id=id;
+            this.name=name;
+            this.fam=fam;
+            this.pair=pair;
+            this.voidpair=voidpair;
+            this.info=function(){
+                console.log(this.id+" "+this.name+" "+this.fam+this.pair+" "+this.voidpair+"\n")
+            };
+            this.Propusk=function(){
+                if((this.voidpair/this.pair)>= 0.4){
+                    console.log("прогульщик")
+                    return
+                }
+                console.log("ок")
+            }
+        }
+        let stud= new Student(4,"name","fam",100,40)
+        stud.Propusk()
+    </script>
+</body>
+</html>

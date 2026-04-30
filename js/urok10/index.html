@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            font-size: 32px;
+        }
+        #calc{
+            border: 2px solid black;
+            padding: 30px;
+            width: max-content;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .result_pole{
+            border: 2px solid black;
+            padding: 10px;
+            text-align: right;
+            background-color: grey;
+        }
+        .result_pole .line_enter{
+            font-size: 16px;
+            color: rgb(179, 179, 179);
+        }
+        .result_pole .result_number{
+            color: rgb(255, 255, 255);
+        }
+        .numbers,.znaki{
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            max-width: calc(3 * 68px + 2 * 10px);
+        }
+        .numbers span,.znaki span{
+            display: flex;
+            border: 2px solid black;
+            width: 32px;
+            height: 32px;
+            align-items: center;
+            justify-content: center;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+    <div id="calc" data-number1="" data-znak="" data-number2="">
+        <div class="result_pole">
+            <p class="line_enter"></p>
+            <p class="result_number"></p>
+        </div>
+        <div class="numbers">
+            <span data-value="1">1</span>
+            <span data-value="2">2</span>
+            <span data-value="3">3</span>
+            <span data-value="4">4</span>
+            <span data-value="5">5</span>
+            <span data-value="6">6</span>
+            <span data-value="7">7</span>
+            <span data-value="8">8</span>
+            <span data-value="9">9</span>
+            <span data-value="9">0</span>
+        </div>
+        <div class="znaki">
+            <span data-value="1">+</span>
+            <span data-value="2">-</span>
+            <span data-value="3">*</span>
+            <span data-value="4">/</span>
+            <span data-value="0">=</span>
+        </div>
+    </div>
+
+    <script src="jquery-4.0.0.min.js"></script>
+    <script>
+        $(document).ready(function(){
+
+            $(".numbers span").click(function(){
+                let znak=$(this).attr("data-value");
+                let operation = $("#calc").attr("data-znak")
+                $(".result_pole .result_number").text($(".result_number").text()+znak)
+                if(operation==""){
+                    $("#calc").attr("data-number1",$("#calc").attr("data-number1")+znak)
+                }else{
+                    $("#calc").attr("data-number2",$("#calc").attr("data-number2")+znak)
+                }
+            })
+
+            $(".znaki span").click(function(){
+                let znak=$(this).attr("data-value");
+                let znak2=""
+                let operation = $("#calc").attr("data-znak")
+                if(operation==""){
+                    if(znak=="1"){znak2="+";}
+                    if(znak=="2"){znak2="-";}
+                    if(znak=="3"){znak2="*";}
+                    if(znak=="4"){znak2="/";}
+                }
+                if(znak=="0"){
+                    znak2="=";
+                    let result=0;
+                    if(!$("#calc").attr("data-number2")){
+                        console.log("второчие число не введено")
+                        return
+                    }
+                    if($("#calc").attr("data-znak")==1){
+                        result=$("#calc").attr("data-number1")+$("#calc").attr("data-number2")
+                    }else if($("#calc").attr("data-znak")==2){
+                        result=$("#calc").attr("data-number1")-$("#calc").attr("data-number2")
+                    }else if($("#calc").attr("data-znak")==3){
+                        result=$("#calc").attr("data-number1")*$("#calc").attr("data-number2")
+                    }else if($("#calc").attr("data-znak")==4){
+                        result=$("#calc").attr("data-number1")/$("#calc").attr("data-number2")
+                    }
+                    $(".result_pole .result_number").text(result)
+                }
+                else{
+                    $(".result_pole .result_number").text($(".result_number").text()+znak2)
+                    $("#calc").attr("data-znak",znak)
+                }
+                
+            })
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    </style>
+</head>
+<body>
+    <main>
+        <input type="text" placeholder="введите пароль:" id="password">
+        <input type="text" placeholder="введите пароль:" id="password_confirm">
+        <input type="submit" value="confirm" id="submit">
+        
+
+        <p id="showLP">уровень_пароля.ехе</p>
+    </main>
+
+    <script>
+        const showLP=document.getElementById("showLP")
+        const password=document.getElementById("password")
+        const password_confirm=document.getElementById("password_confirm")
+        const submit=document.getElementById("submit")
+
+        password.addEventListener("input", function(){
+            
+            let count=0;
+            const passValue = password.value;
+            let regEnglishAlpha=/[a-zA-Z]/
+            let regEnglishAlphaUpper=/[A-Z]/
+            let regNum=/[0-9]/
+            console.log(passValue.length>=4,regEnglishAlpha.test(passValue),regEnglishAlphaUpper.test(passValue),regNum.test(passValue))
+
+            if(passValue.length>=4)count++;
+            if(regEnglishAlpha.test(passValue))count++;
+            if(regEnglishAlphaUpper.test(passValue))count++;
+            if(regNum.test(passValue))count++;
+            
+            if(count==0){showLP.innerText="очень простой"}
+            else if(count==1){showLP.innerText="простой"}
+            else if(count==2){showLP.innerText="средний"}
+            else if(count==3){showLP.innerText="сложный"}
+            else if(count==4){showLP.innerText="очень сложный"}
+        })
+        
+        submit.addEventListener("click",function(){
+            if(password.value!=password_confirm.value){
+                alert("пароли разные!")
+            }else{alert("пароли совпадают!!!!!!!!!!!!!!!!!!!!!!!!!!")}
+        })
+
+    </script>
+</body>
+</html>

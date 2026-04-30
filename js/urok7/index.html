@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0;
+            margin:0;
+            z-index: 0;
+        }
+        body>div{
+        display: flex;
+        flex-direction: row;
+            gap: 20px;
+        }
+        .box{
+            width: 100px;
+            height: 100px;
+            margin-bottom: 10px;
+            border: 1px solid black;
+            position: relative;
+        }
+
+
+    </style>
+</head>
+<body>
+    <div>
+        <!-- <div class="box" id="box1">адвокат</div> -->
+        <div class="box" id="box2">адвокат</div>
+        <div class="box" id="box3">адвокат</div>
+        <div class="box" id="box4">адвокат</div>
+    </div>
+
+
+    <script src="jquery-4.0.0.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            width=1578
+            sizeW=200
+            sizeH=200
+
+            $("#box4").animate({"left":width-sizeW+"px","height":sizeH+"px","width":sizeW+"px"},1000,"swing",function(){
+                $("#box3").animate({"left":width-sizeW+"px","height":sizeH+"px","width":sizeW+"px"},1000,"swing",function(){
+                    $("#box2").animate({"left":width-sizeW+"px","height":sizeH+"px","width":sizeW+"px"},1000,"swing",function(){
+                    })
+                })
+            })
+            
+            // for (let index = 0; index < 10; index++) {
+            //     $("#box4").animate({"left":width},1000,"swing",function(){
+            //         $("#box3").animate({"left":width},1000,"swing",function(){
+            //             $("#box2").animate({"left":width},1000,"swing",function(){
+            //                 $("#box4").animate({"left":"0px"},1000,"swing")
+            //                 $("#box3").animate({"left":"0px"},1000,"swing")
+            //                 $("#box2").animate({"left":"0px"},1000,"swing")
+            //             })
+            //         })
+            //     })
+            // }
+
+            // function reverse(step){
+            //     $("#box4").animate({"left":width},1000,"swing",function(){
+            //         $("#box3").animate({"left":width},1000,"swing",function(){
+            //             $("#box2").animate({"left":width},1000,"swing",function(){
+            //                 $("#box4").animate({"left":"0px"},1000,"swing")
+            //                 $("#box3").animate({"left":"0px"},1000,"swing")
+            //                 $("#box2").animate({"left":"0px"},1000,"swing")
+            //             })
+            //         })
+            //     })
+
+            //     if(step>=1){
+            //         reverse(step-1)
+            //     }
+            // }
+            // reverse(1)
+
+        });
+
+    </script>
+</body>
+</html>

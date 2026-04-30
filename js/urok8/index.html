@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0;
+            margin:0;
+            z-index: 0;
+        }
+        body{
+            padding: 10px;
+        }
+        .zakaz{
+            display: inline-block;
+            border: 1px solid black;
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="zakaz">
+        <div class="name">Яблоки</div>
+        <div class="price">150</div>
+        <div class="count"><input type="number" name="count"></div>
+    </div>
+    <div class="zakaz">
+        <div class="name">Яблоки</div>
+        <div class="price">150</div>
+        <div class="count"><input type="number" name="count"></div>
+    </div>
+    <div class="confirm" id="button-confirm"><span>Посчитать</span></div>
+    <p class="TotalPrice"></p>
+
+
+    <script src="jquery-4.0.0.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#button-confirm").on("click",function(){
+                let TotalPrice=0
+                for (let index = 0; index < $(".zakaz").get().length; index++) {
+                    let price=$(".zakaz").get(index).getElementsByClassName("price")[0].textContent*1
+                    let count=$(".zakaz").get(index).querySelector("input[name='count']").value * 1
+                    TotalPrice+=price*count
+                }
+                console.log(TotalPrice)
+                $(".TotalPrice").text(TotalPrice)
+                //console.log($(".zakaz").get().length)
+                //console.log($(".zakaz").get(0).getElementsByClassName("price")[0].textContent)
+                //console.log($(".zakaz").get(0).querySelector("input[name='count']").value * 1)
+            })
+
+
+            // $("#button-confirm").on("click",function(){
+            //     let price_tovar=$("#price").text()
+            //     let count_tovar=$("#count").val()
+            //     console.log(count_tovar,price_tovar)
+            //     console.log(price_tovar*count_tovar)
+                
+            // })
+        });
+
+    </script>
+</body>
+</html>

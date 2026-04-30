@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0;
+            margin:0;
+            z-index: 0;
+        }
+        body{
+            background-color:black;
+        }
+        body>div{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+        }
+        .box{
+            width: 100px;
+            height: 100px;
+            margin-bottom: 10px;
+            border: 1px solid black;
+        }
+        .active{
+            display: flex;
+            background-color: black;
+            color: white;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #f71cff
+        }
+        canvas{
+            z-index: -1;
+            position: absolute;
+        }
+
+
+    </style>
+</head>
+<body>
+    <canvas id="myCanvas"></canvas>
+    <div style="display: none;">
+        <div class="box">адвокат</div>
+        <div class="box">махарага</div>
+        <div class="box">человек</div>
+        <div class="box">горунта</div>
+        <div class="box">бука</div>
+    </div>
+
+
+    <script src="jquery-4.0.0.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $(".box").click(function(){     
+                $(".box").removeClass("active")
+                $(this).addClass("active")
+            })
+        });
+        const width=window.innerWidth*window.devicePixelRatio
+        const height=window.innerHeight*window.devicePixelRatio
+        const Speed =10
+        const position={
+            x:10,
+            y:40,
+        }
+        const diretion={
+            x:1,
+            y:1,
+        }
+        var c = document.getElementById("myCanvas");
+        c.width=width
+        c.height=height
+        var context = c.getContext("2d");
+        context.font="48px Roboto, sans-serif"
+        context.fillStyle= '#'+(Math.random() * 0xFFFFFF << 0).toString(16).padStart(6, '0');
+
+        function animate(){
+            context.clearRect(0, 0, width, height);
+            position.x+=diretion.x*Speed
+            position.y+=diretion.y*Speed
+            if(position.x<0){
+                position.x = 0;
+                diretion.x=1
+                context.fillStyle= '#'+(Math.random() * 0xFFFFFF << 0).toString(16).padStart(6, '0');
+            }
+            if(position.x>width-100){
+                position.x = width - 100;
+                diretion.x=-1
+                context.fillStyle= '#'+(Math.random() * 0xFFFFFF << 0).toString(16).padStart(6, '0');
+            }
+            if(position.y<50){
+                position.y = 50;
+                diretion.y=1
+                context.fillStyle= '#'+(Math.random() * 0xFFFFFF << 0).toString(16).padStart(6, '0');
+            }
+            if(position.y>height){
+                position.y = height;
+                diretion.y=-1
+                context.fillStyle= '#'+(Math.random() * 0xFFFFFF << 0).toString(16).padStart(6, '0');
+            }
+            context.fillText('DVD',position.x,position.y)            
+            requestAnimationFrame(animate);
+        }
+        animate();
+
+    </script>
+</body>
+</html>

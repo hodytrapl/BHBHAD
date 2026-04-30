@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0;
+            margin:0;
+        }
+        body{
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            justify-content: center;
+            align-items:flex-end;
+        }
+
+        .rocket{
+            width: 300px;
+            height: 300px;
+            position: relative;
+        }
+        .kaboom{
+            width: 50px;
+            height: 50px;
+            position: absolute;
+        }
+        .top_kaboom{
+            top:-150px;
+        }
+
+
+    </style>
+</head>
+<body>
+
+
+    <audio src="rocket-starting-hissing_fjrunreo1.mp3" id="polet"></audio>
+    <audio src="zvuk-vzryva.mp3" id="perdez"></audio>
+    <img src="https://thumbs.dreamstime.com/b/none-40502665.jpg" alt="" class="rocket">
+    <img src="https://png.pngtree.com/png-vector/20241217/ourmid/pngtree-intense-bomb-blast-with-smoke-effect-png-image_14757862.png" alt="" class="kaboom" id="kaboom_rocket">
+    <img src="https://png.pngtree.com/png-vector/20241217/ourmid/pngtree-intense-bomb-blast-with-smoke-effect-png-image_14757862.png" alt="" class="kaboom top_kaboom"id="kaboom_rocket_default">
+
+    <script src="jquery-4.0.0.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#kaboom_rocket_default").hide()
+            $("#kaboom_rocket").hide()
+            $(document).click(function() {
+                $("#polet").trigger("play")
+                
+                $("#kaboom_rocket").show()
+                $(".rocket").animate({"bottom":"900px"},3000,function(){
+                    $("#kaboom_rocket_default").show()
+                    $(".rocket").hide()
+                    $("#kaboom_rocket_default").animate({"width":"400px","height":"400px"},500,function(){
+                        $("#kaboom_rocket_default").animate({"width":"0px","height":"0px"},1000,function(){
+                            $("#kaboom_rocket_default").hide()
+                        })
+                    })
+                }).delay(1000)
+                $("#kaboom_rocket").animate({"width":"200px","height":"200px"},1000,function(){
+                    $("#kaboom_rocket").animate({"width":"0px","height":"0px"},1000,function(){
+                        $("#perdez").trigger("play")
+                        $("#kaboom_rocket").hide()
+                    })
+                })
+                });
+            });
+
+
+    </script>
+</body>
+</html>
